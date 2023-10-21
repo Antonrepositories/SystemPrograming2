@@ -132,7 +132,6 @@
   <ItemGroup>
     <Text Include="Autmt.txt" />
     <Text Include="Automata2.txt" />
-    <Text Include="Automata3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

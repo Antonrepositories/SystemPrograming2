@@ -22,6 +22,5 @@
   <ItemGroup>
     <Text Include="Autmt.txt" />
     <Text Include="Automata2.txt" />
-    <Text Include="Automata3.txt" />
   </ItemGroup>
 </Project>
