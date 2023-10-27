@@ -129,7 +129,7 @@ void FiniteAutomata::Result(int currentState, string word, vector<string>&foundW
     }
     int max_plus = *finalStates.rbegin();
     for (int i = 0; i < depTransitions.size(); i++) {
-        if (word.length() <= transitionsAmount + max_plus) {
+        /*if (word.length() <= transitionsAmount + max_plus) {
             Result(depTransitions[i].sn, word + depTransitions[i].a, foundWords, visited);
             if (depTransitions[i].s > depTransitions[i].sn) {
                 string period = word + depTransitions[i].a;
@@ -137,6 +137,18 @@ void FiniteAutomata::Result(int currentState, string word, vector<string>&foundW
                 while (period.size() > 1 && word.size() < alphabetSize) {
                     possiblePeriod.insert(period);
                     period.erase(period.begin());
+                }
+            }
+        }*/
+        if (word.length() < transitins.size() * 2) {
+            if (word.length() < 1) {
+                Result(depTransitions[i].sn, word + depTransitions[i].a, foundWords, visited);
+            }
+            else if (word.back() != depTransitions[i].a) {
+                Result(depTransitions[i].sn, word + depTransitions[i].a, foundWords, visited);
+                if (word.length() < transitins.size() && word.find('e') == string::npos) {
+                    possiblePeriod.insert(word);
+                    //cout << word << endl;
                 }
             }
         }
@@ -150,8 +162,8 @@ void FiniteAutomata::Result(int currentState, string word, vector<string>&foundW
 
 int main()
 {
-    FiniteAutomata automation("Autmt.txt");
-    //FiniteAutomata automation("Automata2.txt");
+    //FiniteAutomata automation("Autmt.txt");
+    FiniteAutomata automation("Automata2.txt");
     vector<string>result = automation.findWords();
     for (int i = 0; i < result.size(); i++) {
         result[i].erase(remove(result[i].begin(), result[i].end(), 'e'), result[i].end());
@@ -167,19 +179,19 @@ int main()
     cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
     vector<string>toDelete;
     for (int i = 0; i < result.size(); i++) {
-        if (result[i].size() >= 2) {
-            string word = result[i];
-            
-            for (int j = 0; j < word.length() - 1; j++) {
-                char f = word[j];
-                char n = word[j + 1];
-                if (f == n) {
-                    //cout << word << endl;
-                    toDelete.push_back(result[i]);
-                    break;
-                }
-            }
-        }
+        //if (result[i].size() >= 2) {
+        //    string word = result[i];
+        //    
+        //    for (int j = 0; j < word.length() - 1; j++) {
+        //        char f = word[j];
+        //        char n = word[j + 1];
+        //        if (f == n) {
+        //            //cout << word << endl;
+        //            toDelete.push_back(result[i]);
+        //            break;
+        //        }
+        //    }
+        //}
         string word = result[i];
         for (int k = 0; k < perFrag.size(); k++) {
             string period = perFrag[k];
